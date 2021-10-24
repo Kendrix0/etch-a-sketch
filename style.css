@@ -1,0 +1,23 @@
+:root {
+    --grid-cols: 1;
+    --grid-rows: 1;
+}
+
+.container {
+    display: grid;
+    grid-gap: 0px;
+    grid-template-rows: repeat(var(--grid-rows), 1fr);
+    grid-template-columns: repeat(var(--grid-cols), 1fr);
+    position: relative;
+    width: 40%;
+}
+
+.container:after {
+    padding-bottom: 100%;
+}
+
+.grid-item {
+    padding: 0px;
+    border: 1px solid black;
+    text-align: center;
+}
