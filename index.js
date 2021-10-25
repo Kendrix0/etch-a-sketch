@@ -1,14 +1,24 @@
-const container = document.querySelector(".container");
+const container = document.querySelector('.container');
+const clear = document.querySelector('.clear')
 
-function makeRows(rows, cols) {
-  container.style.setProperty('--grid-rows', rows);
-  container.style.setProperty('--grid-cols', cols);
-  for (c = 0; c < (rows * cols); c++) {
-    let cell = document.createElement("div");
-    cell.innerText = (c + 1);
-    cell.classList.add('grid-item')
-    container.appendChild(cell)
+let size = 64
+
+function makeRows(size) {
+  container.style.setProperty('--grid-rows', size);
+  container.style.setProperty('--grid-cols', size);
+  for (c = 0; c < (size**2); c++) {
+    let cell = document.createElement('div');
+    cell.classList.add('grid-item');
+    cell.addEventListener('mouseover', () => {
+      cell.setAttribute('style', 'background-color: black')
+    });
+    container.appendChild(cell);
   };
 };
 
-makeRows(16, 16);
+clear.onclick = () => {
+  container.innerHTML = ''
+  makeRows(size)
+}
+
+makeRows(size);
