@@ -1,7 +1,8 @@
 const container = document.querySelector('.container');
-const clear = document.querySelector('.clear')
-
-let size = 64
+const clearBtn = document.querySelector('.clear');
+const gridSize = document.querySelector('#gridSize');
+const gridColor = document.querySelector('#gridColor');
+const sizeLabel = document.querySelector('#sizeLabel');
 
 function makeRows(size) {
   container.style.setProperty('--grid-rows', size);
@@ -10,15 +11,26 @@ function makeRows(size) {
     let cell = document.createElement('div');
     cell.classList.add('grid-item');
     cell.addEventListener('mouseover', () => {
-      cell.setAttribute('style', 'background-color: black')
+      cell.setAttribute('style', `background-color: ${gridColor.value}`)
     });
     container.appendChild(cell);
   };
+  gridSize.value = size
 };
 
-clear.onclick = () => {
+clearBtn.onclick = () => {
   container.innerHTML = ''
-  makeRows(size)
+  makeRows(gridSize.value)
 }
 
-makeRows(size);
+gridSize.onmousemove = (e) => {
+  sizeLabel.textContent = `${e.target.value} x ${e.target.value}`
+};
+
+gridSize.onchange = (e) => {
+  sizeLabel.textContent = `${e.target.value} x ${e.target.value}`
+  container.innerHTML = ''
+  makeRows(e.target.value)
+}
+
+makeRows(16);
