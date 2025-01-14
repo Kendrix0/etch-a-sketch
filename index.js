@@ -10,8 +10,10 @@ function makeRows(size) {
   for (c = 0; c < (size**2); c++) {
     let cell = document.createElement('div');
     cell.classList.add('grid-item');
-    cell.addEventListener('mouseover', () => {
+    cell.addEventListener('mouseover', (e) => {
+      if (e.ctrlKey) {
       cell.setAttribute('style', `background-color: ${gridColor.value}`)
+      }
     });
     container.appendChild(cell);
   };
